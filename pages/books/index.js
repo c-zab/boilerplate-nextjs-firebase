@@ -1,7 +1,7 @@
-import { books } from '../../data/utils.js'
+import { getBooks } from '@/utils/api-utils.js'
 import Link from 'next/link'
 
-function index() {
+function index({ books }) {
   return (
     <div
       style={{
@@ -27,6 +27,7 @@ function index() {
             style={{
               display: 'flex',
               justifyContent: 'center',
+              margin: '1rem 0',
             }}
           >
             <Link
@@ -36,19 +37,28 @@ function index() {
                 justifyContent: 'center',
                 alignItems: 'center',
                 background: 'lightblue',
-                width: '70px',
-                height: '30px',
-                borderRadius: '5px',
+                borderRadius: '0.5rem',
                 color: 'black',
+                padding: '0.5rem',
               }}
             >
-              Link
+              Go to book
             </Link>
           </div>
         </div>
       ))}
     </div>
   )
+}
+
+export const getStaticProps = async ctx => {
+  const books = await getBooks()
+
+  return {
+    props: {
+      books,
+    },
+  }
 }
 
 export default index

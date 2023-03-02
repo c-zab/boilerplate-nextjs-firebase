@@ -1,0 +1,29 @@
+{
+  "books": [
+    {
+      "id": "1",
+      "name": "Mindset",
+      "description": "The New Psychology of Success"
+    },
+    {
+      "id": "2",
+      "name": "Habits",
+      "description": "My Life in the New Science of Habit"
+    },
+    {
+      "id": "3",
+      "name": "The 7 Habits of Highly Effective People",
+      "description": "Effective People can be Effective in any Situation"
+    },
+    {
+      "id": "4",
+      "name": "Mindful Leadership",
+      "description": "Leading with Purpose, Presence, and Impact"
+    },
+    {
+      "id": "5",
+      "name": "The Power of Habit",
+      "description": "Power of Habit is a book by Charles Duhigg"
+    }
+  ]
+}
