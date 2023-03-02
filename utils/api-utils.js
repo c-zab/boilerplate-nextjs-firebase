@@ -6,4 +6,10 @@ async function getBooks() {
   return data
 }
 
-export { getBooks }
+async function fetchBooksFromId(id) {
+  const books = await getBooks()
+  const book = books.find(book => book.id === id)
+  return book
+}
+
+export { getBooks, fetchBooksFromId }

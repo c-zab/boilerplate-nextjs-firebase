@@ -51,7 +51,7 @@ function index({ books }) {
   )
 }
 
-export const getStaticProps = async ctx => {
+export const getStaticProps = async () => {
   const books = await getBooks()
 
   return {

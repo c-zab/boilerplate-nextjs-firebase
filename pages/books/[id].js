@@ -1,15 +1,6 @@
-import { useRouter } from 'next/router'
-import { fetchBooksFromId } from '../../data/utils.js'
+import { getBooks, fetchBooksFromId } from '@/utils/api-utils.js'
 
-function BookDetail() {
-  const { query } = useRouter()
-  const bookId = query.id
-  const book = fetchBooksFromId(bookId)
-
-  if (!book) {
-    return <p>Loading...</p>
-  }
-
+function BookDetail({ book }) {
   return (
     <div
       style={{
@@ -33,6 +24,25 @@ function BookDetail() {
       </div>
     </div>
   )
+}
+
+export const getStaticProps = async ({ params }) => {
+  const book = await fetchBooksFromId(params.id)
+
+  return {
+    props: { book },
+  }
+}
+
+// You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
+export const getStaticPaths = async () => {
+  const books = await getBooks()
+  const paths = books.map(book => ({ params: { id: book.id } }))
+
+  return {
+    paths,
+    fallback: false,
+  }
 }
 
 export default BookDetail
