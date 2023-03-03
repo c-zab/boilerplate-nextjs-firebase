@@ -1,4 +1,4 @@
-import { getBooks, fetchBooksFromId } from '@/utils/api-utils.js'
+import { getBooks, getBookFromId } from '@/utils/api-utils.js'
 
 function BookDetail({ book }) {
   return (
@@ -26,23 +26,31 @@ function BookDetail({ book }) {
   )
 }
 
-export const getStaticProps = async ({ params }) => {
-  const book = await fetchBooksFromId(params.id)
+// SSR (Server Side Rendering)
+export const getServerSideProps = async ({ params }) => {
+  const book = await getBookFromId(params.id)
 
   return {
     props: { book },
   }
 }
+// SSG (Static Site Generation)
+// export const getStaticProps = async ({ params }) => {
+//   const book = await getBookFromId(params.id)
 
-// You should use getStaticPaths if you’re statically pre-rendering pages that use dynamic routes
-export const getStaticPaths = async () => {
-  const books = await getBooks()
-  const paths = books.map(book => ({ params: { id: book.id } }))
+//   return {
+//     props: { book },
+//   }
+// }
 
-  return {
-    paths,
-    fallback: false,
-  }
-}
+// export const getStaticPaths = async () => {
+//   const books = await getBooks()
+//   const paths = books.map(book => ({ params: { id: book.id } }))
+
+//   return {
+//     paths,
+//     fallback: false,
+//   }
+// }
 
 export default BookDetail
