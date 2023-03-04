@@ -45,7 +45,7 @@ function index({ books }) {
                   borderRadius: '0.5rem',
                   color: 'black',
                   padding: '0.5rem',
-                  'text-decoration': 'none',
+                  textDecoration: 'none',
                 }}
               >
                 Go to book

@@ -34,15 +34,7 @@ function BookDetail({ book }) {
 }
 
 // SSR (Server Side Rendering)
-export const getServerSideProps = async ({ params }) => {
-  const book = await getBookFromId(params.id)
-
-  return {
-    props: { book },
-  }
-}
-// SSG (Static Site Generation)
-// export const getStaticProps = async ({ params }) => {
+// export const getServerSideProps = async ({ params }) => {
 //   const book = await getBookFromId(params.id)
 
 //   return {
@@ -50,14 +42,23 @@ export const getServerSideProps = async ({ params }) => {
 //   }
 // }
 
-// export const getStaticPaths = async () => {
-//   const books = await getBooks()
-//   const paths = books.map(book => ({ params: { id: book.id } }))
+// SSG (Static Site Generation)
+export const getStaticProps = async ({ params }) => {
+  const book = await getBookFromId(params.id)
 
-//   return {
-//     paths,
-//     fallback: false,
-//   }
-// }
+  return {
+    props: { book },
+  }
+}
+
+export const getStaticPaths = async () => {
+  const books = await getBooks()
+  const paths = books.map(book => ({ params: { id: book.id } }))
+
+  return {
+    paths,
+    fallback: false,
+  }
+}
 
 export default BookDetail
