@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "format": "prettier --write ."
+    "export": "next export",
+    "format": "prettier --write .",
+    "deploy-gh-pages": "npm run build && npm run export"
   },
   "dependencies": {
     "eslint": "8.35.0",
